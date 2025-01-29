@@ -24,39 +24,27 @@ public class LinkedList {
             tail = newNode;
         }
     }
-
-    public void insertMiddle(int data, int pos) {
-        // Handle invalid position (less than 1 or greater than list size)
-        if (pos < 1) {
-            System.out.println("Invalid position. Cannot insert before head.");
-            return;
+    public void insertMiddle(int data,int pos) 
+    {    
+        //Create a new node    
+        Node newNode = new Node(data);    
+       //temporary node points to head node
+        Node temp=head;
+        if(pos==1)
+        {
+newNode.next=temp;
+        head=newNode;
         }
-
-        Node newNode = new Node(data);
-        Node current = head;
-        int counter = 1;
-
-        // Traverse to the node before the insertion position
-        while (current != null && counter < pos) {
-            current = current.next;
-            counter++;
+        else
+        {
+        for(int i=1;i<(pos-1);i++ ) 
+        {    
+            temp = temp.next;    
+        }    
+newNode.next=temp.next;
+temp.next=newNode;
         }
-
-        // Handle position beyond list size (insert at the end)
-        if (current == null) {
-            addNode(data);
-            return;
-        }
-
-        // Insert at the beginning (position 1)
-        if (pos == 1) {
-            newNode.next = head;
-            head = newNode;
-        } else {
-            // Insert in the middle
-            newNode.next = current.next;
-            current.next = newNode;
-        }
+System.out.println("Element Inserted");
     }
 
     public void displayList() {
