@@ -72,11 +72,39 @@ public static void main(String[] args) {
            }
         }
     }
-public void insertMiddle() 
-    {    
-//TYPE YOUR CODE HERE
-    }
+    public void insertMiddle(int data, int pos) {
+        // Handle invalid position (less than 1 or greater than list size)
+        if (pos < 1) {
+            System.out.println("Invalid position. Cannot insert before head.");
+            return;
+        }
 
+        Node newNode = new Node(data);
+        Node current = head;
+        int counter = 1;
+
+        // Traverse to the node before the insertion position
+        while (current != null && counter < pos) {
+            current = current.next;
+            counter++;
+        }
+
+        // Handle position beyond list size (insert at the end)
+        if (current == null) {
+            addNode(data);
+            return;
+        }
+
+        // Insert at the beginning (position 1)
+        if (pos == 1) {
+            newNode.next = head;
+            head = newNode;
+        } else {
+            // Insert in the middle
+            newNode.next = current.next;
+            current.next = newNode;
+        }
+    }
 public void displayList() {
         Node current = head;
         while (current != null) {
